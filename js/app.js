@@ -4,31 +4,36 @@ const searchButton = () => {
     const inputValue = input.value;
 
 
-    main.innerHTML = "";
+    // main.innerHTML = "";
 
-    fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
-        .then(res => res.json())
-        .then(data => phoneDisplay(data.data.slice(0, 20)))
+    // fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
+    //     .then(res => res.json())
+    //     .then(data => phoneDisplay(data.data.slice(0, 20)))
 
-    // const error = document.getElementById("error");
+    const error = document.getElementById("error");
 
-    // if (inputValue == "") {
-    //     error.innerText = "please give phone name";
-    //     input.value = "";
-    //     main.innerHTML = "";
-    // }
-    // else {
-    //     main.innerHTML = "";
-    //     fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
-    //         .then(res => res.json())
-    //         .then(data => cardsDisplay(data.data))
+    if (inputValue == "") {
+        error.innerText = "Please give phone name";
+        input.value = "";
+        main.innerHTML = "";
+    }
+    else {
+        main.innerHTML = "";
 
-    //     input.value = "";
-    //     error.innerHTML = ""
-    // }
+        fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
+            .then(res => res.json())
+            .then(data => phoneDisplay(data.data.slice(0, 20)))
+
+        input.value = "";
+        error.innerHTML = ""
+    }
 }
 
 const phoneDisplay = (phones) => {
+
+    if (phones.length == 0) {
+        error.innerText = "No Phone Found!";
+    }
 
     // console.log(phones);
     for (const phone of phones) {
