@@ -1,4 +1,6 @@
-const main = document.getElementById("main");
+const searchResult = document.getElementById("searchResult");
+const detailView = document.getElementById("detailView");
+
 const searchButton = () => {
     const input = document.getElementById("input-value");
     const inputValue = input.value;
@@ -15,10 +17,10 @@ const searchButton = () => {
     if (inputValue == "") {
         error.innerText = "Please give phone name";
         input.value = "";
-        main.innerHTML = "";
+        searchResult.innerHTML = "";
     }
     else {
-        main.innerHTML = "";
+        searchResult.innerHTML = "";
 
         fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
             .then(res => res.json())
@@ -52,7 +54,7 @@ const phoneDisplay = (phones) => {
                 </div>
             </div>
         `
-        main.appendChild(div)
+        searchResult.appendChild(div)
     }
 }
 
@@ -64,9 +66,9 @@ const phoneDetails = (id) => {
             console.log(selectedPhone);
 
             const div = document.createElement("div");
-            main.innerHTML = "";
+            detailView.innerHTML = "";
             div.innerHTML = `
-                <div class="card" style="width: 36rem;">
+                <div class="card phone-detail" style="width: 36rem;">
                     <img src="${selectedPhone.image}" class="card-img-top phone-detail" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${selectedPhone.releaseDate}</h5>
@@ -76,7 +78,8 @@ const phoneDetails = (id) => {
                     </div>
                 </div>
             `
-            main.appendChild(div);
+            detailView.appendChild(div);
+
             phoneDisplay(data);
         })
 
