@@ -4,14 +4,6 @@ const detailView = document.getElementById("detailView");
 const searchButton = () => {
     const input = document.getElementById("input-value");
     const inputValue = input.value;
-
-
-    // main.innerHTML = "";
-
-    // fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
-    //     .then(res => res.json())
-    //     .then(data => phoneDisplay(data.data.slice(0, 20)))
-
     const error = document.getElementById("error");
 
     if (inputValue == "") {
@@ -37,12 +29,11 @@ const phoneDisplay = (phones) => {
         error.innerText = "No Phone Found!";
     }
 
-    // console.log(phones);
     for (const phone of phones) {
-        // console.log(phone);
+
         const div = document.createElement("div");
         div.classList.add("col-lg-4");
-        // div.classList.add("mb-5");
+
         div.classList.add("g-5");
         div.innerHTML = `
             <div class="card" style="width: 18rem;">
@@ -59,13 +50,10 @@ const phoneDisplay = (phones) => {
 }
 
 const phoneDetails = (id) => {
+    // console.log("phone id: ", id)
     fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
         .then(res => res.json())
         .then(data => {
-            // const selectedPhone = data.data;
-            // console.log(selectedPhone);
-
-            // const sensors = data.data.sensors;
 
             const div = document.createElement("div");
             detailView.innerHTML = "";
@@ -78,18 +66,20 @@ const phoneDetails = (id) => {
                         <p class="card-text">Display: ${data.data.mainFeatures.displaySize}</p>
                         <p class="card-text">Memory: ${data.data.mainFeatures.memory}</p>
                         
-                        <p class="card-text">Sensors: ${data.data.sensors}</p>
+                        
+                        
+                        
 
                         <p class="card-text">NFC: ${data.data.others.NFC}</p>
-                        <p class="card-text">${data.data.others.Radio}</p>
-                        <p class="card-text">${data.data.others.USB}</p>
+                        <p class="card-text">Radio: ${data.data.others.Radio}</p>
+                        <p class="card-text">USB: ${data.data.others.USB}</p>
                     </div>
                 </div>
                 
             `
+
             detailView.appendChild(div);
 
-            phoneDisplay(data);
-        })
-
+        }
+        )
 }
