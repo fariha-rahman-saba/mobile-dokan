@@ -1,4 +1,10 @@
-.phone-detail{
-    height: auto;
-    width: auto;
+.phone-detail-section{
+    margin-bottom: 70px;
+    
+}
+
+.phone-detail-img{
+    height: 450px;
+    width: 350px;
+    justify-content: center;
 }
