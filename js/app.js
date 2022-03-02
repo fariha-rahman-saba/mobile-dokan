@@ -50,7 +50,7 @@ const phoneDisplay = (phones) => {
 }
 
 const phoneDetails = (id) => {
-    // console.log("phone id: ", id)
+
     fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
         .then(res => res.json())
         .then(data => {
