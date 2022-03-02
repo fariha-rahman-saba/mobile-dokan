@@ -56,9 +56,11 @@ const phoneDetails = (id) => {
         .then(data => {
 
             const div = document.createElement("div");
+
+            const allSensors = [...data.data.mainFeatures.sensors];
             detailView.innerHTML = "";
             div.innerHTML = `
-                <div class="card phone-detail-section text-center" style="width: 36rem;">
+                <div class="card phone-detail-section text-center my-auto" style="width: 36rem;">
                     <img src="${data.data.image}" class="card-img-top phone-detail-img" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Release Date: ${data.data.releaseDate}</h5>
@@ -66,7 +68,7 @@ const phoneDetails = (id) => {
                         <p class="card-text">Display: ${data.data.mainFeatures.displaySize}</p>
                         <p class="card-text">Memory: ${data.data.mainFeatures.memory}</p>
                         
-                        
+                        <p class="card-text">Sensors: ${allSensors}</p>
                         
                         
 
