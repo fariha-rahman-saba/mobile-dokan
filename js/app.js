@@ -6,6 +6,8 @@ const searchButton = () => {
     const inputValue = input.value;
     const error = document.getElementById("error");
 
+
+    // error handling
     if (inputValue == "") {
         error.innerText = "Please give phone name";
         input.value = "";
@@ -23,6 +25,8 @@ const searchButton = () => {
     }
 }
 
+
+// function for search result
 const phoneDisplay = (phones) => {
 
     if (phones.length == 0) {
@@ -49,6 +53,7 @@ const phoneDisplay = (phones) => {
     }
 }
 
+// function for details of phone
 const phoneDetails = (id) => {
 
     fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
@@ -67,6 +72,7 @@ const phoneDetails = (id) => {
                         <p class="card-text">Storage: ${data.data.mainFeatures.storage}</p>
                         <p class="card-text">Display: ${data.data.mainFeatures.displaySize}</p>
                         <p class="card-text">Memory: ${data.data.mainFeatures.memory}</p>
+                        <p class="card-text">Chipset: ${data.data.mainFeatures.chipSet}</p>
                         
                         <p class="card-text">Sensors: ${allSensors}</p>
                         
